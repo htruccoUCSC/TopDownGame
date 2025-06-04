@@ -18,5 +18,9 @@ let config = {
       },
       width: 1440,
       height: 720,
-      scene: [],
+      scene: [Preloader, MainMenu, Game, GameOver],
 };
+
+var my = { sprite: {}, text: {} };
+
+const game = new Phaser.Game(config);
