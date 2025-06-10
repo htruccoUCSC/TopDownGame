@@ -3,6 +3,11 @@ class Game extends Phaser.Scene {
         super("game");
     }
 
+    preload(){
+        this.load.scenePlugin('AnimatedTiles', './lib/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+
+    }
+
     create() {
         this.map = this.add.tilemap("platformer-level-1", 16, 16, 120, 60);
         this.lavaTileset = this.map.addTilesetImage("lavatileset", "lava_tiles");
@@ -12,17 +17,34 @@ class Game extends Phaser.Scene {
         this.detailLayer = this.map.createLayer("detail-layer", [this.lavaTileset, this.decoTileset], 0, 0);
         this.miscLayer = this.map.createLayer("misc-layer", [this.lavaTileset, this.decoTileset], 0, 0);
 
-        my.sprite.player = this.physics.add.sprite(103, 50, "walk_down", 0);
-        my.sprite.player.setCollideWorldBounds(true);
+        this.animatedTiles.init(this.map);
 
+        my.sprite.player = this.physics.add.sprite(103, 50, "walk_down", 0);
+
+       
+        my.sprite.player.setCollideWorldBounds(true);
+        
+
+
+        this.backgroundLayer.setCollisionByProperty({
+            collides: true
+        });
+        this.physics.add.collider(my.sprite.player, this.backgroundLayer);
+
+         this.input.keyboard.on('keydown-R', () => {
+            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
+            this.physics.world.debugGraphic.clear()
+        }, this);
 
         this.aKey = this.input.keyboard.addKey('A');
         this.wKey = this.input.keyboard.addKey('W');
         this.sKey = this.input.keyboard.addKey('S');
         this.dKey = this.input.keyboard.addKey('D');
+
     }
 
     update() {
+        
         let vx = 0;
         let vy = 0;
 

@@ -6,6 +6,12 @@ class Preloader extends Phaser.Scene {
     preload() {
         this.load.setPath("./assets/");
         //loading tile sheets
+
+        this.load.spritesheet("spawn_anim", "spawnAnim.png",{
+            frameWidth: 128,
+            frameHeight: 128
+        });
+
         this.load.spritesheet("lava_tiles", "freelavatileset-Sheet.png", {
             frameWidth: 16,
             frameHeight: 16
@@ -45,6 +51,7 @@ class Preloader extends Phaser.Scene {
     }
 
     create() {
+
         this.anims.create({
             key: "idle",
             frames: this.anims.generateFrameNumbers("walk_down", {frames: [0]}),
