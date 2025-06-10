@@ -16,8 +16,8 @@ let config = {
           },
         },
       },
-      width: 1440,
-      height: 720,
+      width: 1080,
+      height: 1080,
       scene: [Preloader, MainMenu, Game, GameOver],
 };
 
