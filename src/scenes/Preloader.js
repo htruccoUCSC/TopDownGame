@@ -47,7 +47,12 @@ class Preloader extends Phaser.Scene {
             frameWidth: 12,
             frameHeight: 23
         });
-        this.load.tilemapTiledJSON("platformer-level-1", "platformer-level-1.tmj")
+        this.load.tilemapTiledJSON("platformer-level-1", "platformer-level-1.tmj");
+        
+        this.load.image("heart", "heart.png"); //temp bullet holder
+
+        // enemy sprites
+        this.load.image("swordman", "Skeleton_Swordman Not Armored.png");
     }
 
     create() {
@@ -98,3 +103,4 @@ class Preloader extends Phaser.Scene {
         this.scene.start("game");
     }  
 }
+export default Preloader;

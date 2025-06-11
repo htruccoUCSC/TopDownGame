@@ -1,5 +1,11 @@
 "use strict"
 
+import Preloader from './scenes/Preloader.js';
+import MainMenu from './scenes/MainMenu.js';
+import Game from './scenes/Game.js';
+import GameOver from './scenes/GameOver.js';
+
+
 let config = {
     parent: "phaser-game",
     type: Phaser.CANVAS,

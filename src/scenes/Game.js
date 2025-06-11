@@ -1,3 +1,7 @@
+window.my = window.my || { sprite: {} };
+
+import Bullet from '../sprites/Bullet.js';
+
 class Game extends Phaser.Scene {
     constructor() {
         super("game");
@@ -7,6 +11,7 @@ class Game extends Phaser.Scene {
         this.currentGridY = 0;
         this.isTransitioning = false;
         this.currentBounds = { x: 0, y: 0 };
+        this.lastDirection = { x: 1, y: 0 };
     }
 
     preload(){
@@ -85,10 +90,67 @@ class Game extends Phaser.Scene {
                 });
             }
         });
+
+
+        // BULLETS 
+
+        this.bullets = this.physics.add.group();
+
+        this.input.on('pointerdown', (pointer) => {
+            if (pointer.leftButtonDown()) {
+                const { x: dirX, y: dirY } = this.lastDirection;
+                if (dirX !== 0 || dirY !== 0) {
+                    const bullet = new Bullet(
+                        this,
+                        my.sprite.player.x,
+                        my.sprite.player.y,
+                        dirX,
+                        dirY
+                    );
+                    this.bullets.add(bullet);
+                }
+            }
+        });
+
+        // ENEMIES
+        
+        this.swordman = this.physics.add.sprite(300, 130, "swordman").setScale(0.7);
+        this.swordman.flipX = true;
+        this.swordman.body.immovable = true;
+        this.swordman.health = 5;
+
+        this.playerHealth = 3; // player health placeholder
+
+        // Player collision detection
+        this.physics.add.collider(my.sprite.player, this.swordman, () => {
+            if (!this.playerInvincible) {
+                this.playerHealth -= 1;
+                this.playerInvincible = true;
+
+                this.time.delayedCall(1000, () => {
+                    this.playerInvincible = false;
+                });
+            }
+            if (this.playerHealth <= 0) {
+                this.scene.restart();
+            }
+        });
+
+        // Bullet collision detection --> need fixing
+        this.physics.add.overlap(this.bullets, this.swordman, (bullet, swordman) => {
+            bullet.destroy();
+            this.swordman.health -= 1;
+
+            console.log("Swordman health:", this.swordman.health);
+            if (swordman.health <= 0) {
+                console.log("Swordman defeated!");
+                swordman.destroy();
+            }
+        });
+
     }
 
     update() {
-        
         let vx = 0;
         let vy = 0;
 
@@ -99,13 +161,19 @@ class Game extends Phaser.Scene {
         const canMove = !tile || tile.properties.walkable;
 
         if (canMove) {
-            if (this.aKey.isDown) vx -= 100;
-            if (this.dKey.isDown) vx += 100;
-            if (this.wKey.isDown) vy -= 100;
-            if (this.sKey.isDown) vy += 100;
+            if (this.aKey.isDown) vx -= 1;
+            if (this.dKey.isDown) vx += 1;
+            if (this.wKey.isDown) vy -= 1;
+            if (this.sKey.isDown) vy += 1;
         }
 
-        my.sprite.player.setVelocity(vx, vy);
+        if (vx !== 0 || vy !== 0) {
+            const length = Math.sqrt(vx * vx + vy * vy);
+            this.lastDirection.x = vx / length;
+            this.lastDirection.y = vy / length;
+        }
+
+        my.sprite.player.setVelocity(vx * 100, vy * 100);
         
         //walks left up
         if (vx < 0 && vy < 0){
@@ -131,3 +199,5 @@ class Game extends Phaser.Scene {
         }
     }
 }
+
+export default Game;

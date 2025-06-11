@@ -3,3 +3,4 @@ class MainMenu extends Phaser.Scene {
         super("mainMenu");
     }
 }
+export default MainMenu;

@@ -3,3 +3,4 @@ class GameOver extends Phaser.Scene {
         super("gameOver");
     }
 }
+export default GameOver;
