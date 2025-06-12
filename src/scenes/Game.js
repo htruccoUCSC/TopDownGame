@@ -48,10 +48,10 @@ class Game extends Phaser.Scene {
             quantity: 3
         });
 
-        this.bloodVFX = this.add.particles(0,0, "kenny-particles", {
-            frame: ['smoke_08.png'],
+        this.bloodVFX = this.add.particles(0,0, "blood", {
+            frame: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28], //smoke_08.png
             emitting: false,
-            scale: {start: 0.03, end: 0.0},
+            scale: {start: 0.5, end: 0.0},
             lifespan: 500,
             speed: {min: 50, max: 100},
             gravityY: 1000,

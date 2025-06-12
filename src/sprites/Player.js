@@ -7,7 +7,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         
-        this.shootVFX = shootVFX
+        this.shootVFX = shootVFX;
         this.body.setSize(14, 14);
         this.body.setOffset(0, 10);
         

@@ -7,6 +7,16 @@ class Preloader extends Phaser.Scene {
         this.load.setPath("./assets/");
         //loading tile sheets
 
+        this.load.spritesheet("blood", "blood_particles.png",{
+            frameWidth: 100,
+            frameHeight: 100
+        });
+        
+        this.load.spritesheet("agis", "Agis.png",{
+            frameWidth: 224,
+            frameHeight: 240
+        });
+
         this.load.spritesheet("spawn_anim", "spawnAnim.png",{
             frameWidth: 128,
             frameHeight: 128
@@ -105,6 +115,14 @@ class Preloader extends Phaser.Scene {
             key: "gainHealth",
             frames: this.anims.generateFrameNumbers("tilemap_packed", {frames: [46, 44]}),
             frameRate: 3
+        });
+
+        //Agis animation
+        this.anims.create({
+            key: "boss",
+            frames: this.anims.generateFrameNumbers("agis", {frames: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}),
+            frameRate: 10,
+            repeat: -1
         });
         this.anims.create({
             key: "idle",
