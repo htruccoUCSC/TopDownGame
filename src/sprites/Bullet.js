@@ -16,9 +16,9 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
 
         scene.tweens.add({
             targets: this,
-            x: originX + normX * (options.range || 200),
-            y: originY + normY * (options.range || 200),
-            duration: options.duration || 300,
+            x: originX + normX * (options.range || 50),
+            y: originY + normY * (options.range || 50),
+            duration: options.duration || 200,
             onComplete: () => this.destroy()
         });
     }

@@ -24,6 +24,8 @@ let config = {
       },
       width: 1080,
       height: 1080,
+      autoCenter: Phaser.Scale.CENTER_BOTH,
+      mode: Phaser.Scale.FIT,
       scene: [Preloader, MainMenu, Game, GameOver],
 };
 
