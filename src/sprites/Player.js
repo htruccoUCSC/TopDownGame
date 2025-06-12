@@ -1,12 +1,13 @@
 import Bullet from './Bullet.js';
 
 class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, shootVFX) {
         super(scene, x, y, "walk_down", 0);
         
         scene.add.existing(this);
         scene.physics.add.existing(this);
         
+        this.shootVFX = shootVFX
         this.body.setSize(14, 14);
         this.body.setOffset(0, 10);
         
@@ -32,6 +33,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         });
     }
 
+
     shoot(pointer) {
         const worldPoint = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y);
         
@@ -50,6 +52,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         );
 
         this.bullets.add(bullet);
+        this.shootVFX.emitParticleAt(this.x, this.y);
     }
 
     getBullets() {

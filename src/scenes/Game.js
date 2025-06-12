@@ -13,7 +13,6 @@ class Game extends Phaser.Scene {
         this.isTransitioning = false;
         this.currentBounds = { x: 0, y: 0 };
         this.health = 5;
-
     }
 
     preload(){
@@ -36,7 +35,21 @@ class Game extends Phaser.Scene {
 
         this.animatedTiles.init(this.map);
 
-        my.sprite.player = new Player(this, 103, 50);
+        //particles
+        this.shootVFX = this.add.particles(0,0, "kenny-particles", {
+            frame: ['star_09.png'],
+            emitting: false,
+            scale: {start: 0.03, end: 0.0},
+            lifespan: 500,
+            alpha: {start: 1, end: 0.1},
+            speed: {min: 50, max: 100},
+            gravityY: 1000,
+            quantity: 3
+        });
+
+
+
+        my.sprite.player = new Player(this, 103, 50, this.shootVFX);
         
         this.physics.add.collider(my.sprite.player, this.walkingLayer);
         this.physics.add.collider(my.sprite.player, this.backgroundLayer);
@@ -91,6 +104,8 @@ class Game extends Phaser.Scene {
         my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3);
         my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5);
         my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3);
+
+        
     }
 
     update() {

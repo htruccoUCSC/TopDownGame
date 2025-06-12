@@ -51,6 +51,8 @@ class Preloader extends Phaser.Scene {
         
         this.load.image("heart", "heart.png"); //temp bullet holder
 
+        this.load.multiatlas("kenny-particles", "kenny-particles.json");
+
         // enemy sprites
         this.load.image("swordman", "Skeleton_Swordman Not Armored.png");        
         this.load.image("swordman_armored", "Skeleton_Swordman Armored.png");
@@ -61,6 +63,8 @@ class Preloader extends Phaser.Scene {
             frameWidth: 16,
             frameHeight: 28
         });
+
+
         //player hearts
         this.load.spritesheet("tilemap_packed", "tilemap_packed.png",{
             frameWidth: 18,
@@ -70,7 +74,6 @@ class Preloader extends Phaser.Scene {
     }
 
     create() {
-
 
         //heart anims
         this.anims.create({
