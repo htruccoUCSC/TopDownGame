@@ -31,7 +31,6 @@ class Collectible extends Phaser.Physics.Arcade.Sprite {
                 obj2.destroy();
                 return;
             }
-            console.log(this.health + "hello");
             this.health += 1;
             const heartIndex = this.health - 1;
             hearts[heartIndex].play("gainHealth", true);

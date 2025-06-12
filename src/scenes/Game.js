@@ -47,6 +47,16 @@ class Game extends Phaser.Scene {
             quantity: 3
         });
 
+        this.bloodVFX = this.add.particles(0,0, "kenny-particles", {
+            frame: ['smoke_08.png'],
+            emitting: false,
+            scale: {start: 1.0, end: 0.0},
+            lifespan: 500,
+            speed: {min: 50, max: 100},
+            gravityY: 1000,
+            quantity: 5
+        });
+
 
 
         this.playerSpawn = this.map.findObject(
@@ -114,10 +124,10 @@ class Game extends Phaser.Scene {
         // ENEMIES
 
         //my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
-        my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5);
-        my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3);
-        my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5);
-        my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3);
+        my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5, this.bloodVFX);
+        my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3, this.bloodVFX);
+        my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5, this.bloodVFX);
+        my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3, this.bloodVFX);
 
         
     }

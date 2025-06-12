@@ -1,12 +1,13 @@
 import { my } from '../main.js';
 
 class Enemy extends Phaser.Physics.Arcade.Sprite {
-    constructor (scene, x, y, enemytype, health) {
+    constructor (scene, x, y, enemytype, health, bloodVFX) {
         super(scene, x, y, enemytype);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
+        this.bloodVFX = bloodVFX;
         this.health = health;
         this.enemytype = enemytype;
         this.setScale(0.7);
@@ -25,9 +26,11 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
             bullet.destroy();
             this.health -= 1;
 
+            this.bloodVFX.emitParticleAt(this.x,this.y);
             if (this.health <= 0) {
                 this.destroy();
             }
+            
         });
     }
 }
