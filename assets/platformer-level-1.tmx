@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="28">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
  <editorsettings>
   <export target="platformer-level-1.tmj" format="json"/>
  </editorsettings>
@@ -5327,13 +5327,43 @@
   <object id="24" name="spearmanEnemySpawn" x="415.333" y="117.333">
    <point/>
   </object>
-  <object id="25" name="swordmanArmoredEnemySpawn" x="416.667" y="155.333">
+  <object id="25" name="swordmanArmoredEnemySpawn" x="161.334" y="522.666">
    <point/>
   </object>
   <object id="26" name="spearmanArmoredEnemySpawn" x="419.333" y="192.667">
    <point/>
   </object>
   <object id="27" name="spearmanEnemySpawn" x="172.667" y="411.333">
+   <point/>
+  </object>
+  <object id="28" name="mageEnemySpawn" x="70" y="464.667">
+   <point/>
+  </object>
+  <object id="29" name="swordmanArmoredEnemySpawn" x="210" y="525.333">
+   <point/>
+  </object>
+  <object id="30" name="mageEnemySpawn" x="880.667" y="410.667">
+   <point/>
+  </object>
+  <object id="31" name="mageEnemySpawn" x="1025.33" y="587.333">
+   <point/>
+  </object>
+  <object id="32" name="mageEnemySpawn" x="1151.33" y="487.333">
+   <point/>
+  </object>
+  <object id="33" name="spearmanEnemySpawn" x="882.667" y="518">
+   <point/>
+  </object>
+  <object id="34" name="swordmanArmoredEnemySpawn" x="1060.67" y="433.333">
+   <point/>
+  </object>
+  <object id="35" name="spearmanEnemySpawn" x="1396.67" y="142">
+   <point/>
+  </object>
+  <object id="36" name="mageEnemySpawn" x="1456.67" y="90">
+   <point/>
+  </object>
+  <object id="37" name="swordmanArmoredEnemySpawn" x="1508" y="250">
    <point/>
   </object>
  </objectgroup>
