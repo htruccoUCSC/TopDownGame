@@ -14,7 +14,6 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.flipX = true;
         this.body.immovable = true;        
 
-        scene.physics.add.collider(my.sprite.player, this);
 
         scene.physics.add.overlap(my.sprite.player, this, () => {
             my.sprite.player.takeDamage();
