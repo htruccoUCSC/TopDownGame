@@ -57,6 +57,14 @@ class Preloader extends Phaser.Scene {
         this.load.image("spearman", "Skeleton_Spearman Not Armored.png");        
         this.load.image("spearman_armored", "Skeleton_Spearman Armored.png");
         this.load.image("archer", "Skeleton_Archer.png");
+        this.load.image("flaming_skull", "Skeleton_Flaming Skull.png");
+        this.load.image("crossbowman", "Skeleton_Crossbowman.png");
+        this.load.image("swordman_great", "Skeleton_Great Swordman.png");
+        this.load.image("maceman", "Skeleton_Great Maceman.png");
+        this.load.image("royal_guard", "Skeleton_Royal Guard.png");
+        this.load.image("mage", "Skeleton_Mage Not Hooded.png");
+        this.load.image("mage_hooded", "Skeleton_Mage Hooded.png");
+        this.load.image("king", "Skeleton_King.png");
 
         //text
         this.load.bitmapFont("rocketSquare", "KennyRocketSquare_0.png", "KennyRocketSquare.fnt");

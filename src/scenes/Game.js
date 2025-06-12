@@ -84,20 +84,48 @@ class Game extends Phaser.Scene {
 
         // NPCs
         this.swordman = new NPC(this, 300, 130, 'swordman', [
-            "Skeleton: It's you again?",
-            "Skeleton: Fine. Just click your left mouth button to kill me already.",
-            "Skeleton: Remember, you can also use the E key to interact with other NPCs like me.",
-            "Skeleton: Hope you can win this time, I am tired of dying to you...",
-        ]);
-        this.npcs = this.add.group([this.swordman]);
+            "Swordman: It's you again?",
+            "Swordman: Fine. Just click your left mouth button to kill me already.",
+            "Swordman: Remember, you can also use the E key to interact with other NPCs like me.",
+            "Swordman: Hope you can win this time, I am tired of dying to you...",
+        ], 3);
+        this.swordman_armored = new NPC(this, 160, 470, 'swordman_armored', [
+            "Armored Swordman: You want this chest that probably has something in it to level up your character?",
+            "Armored Swordman: Well, you will have to defeat me first!",
+        ], 5);
+        this.swordman_great = new NPC(this, 625, 500, 'swordman_great', [
+            "Great Swordman: Oh bruh, it's you. Ok let's get this over with.",
+        ], 8);
+        this.npcs = this.add.group([this.swordman, this.swordman_armored]);
 
         // ENEMIES
 
-        //my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
-        my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5);
-        my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3);
-        my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5);
-        my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3);
+        my.sprite.spearman = new Enemy(this, 380, 100, "spearman", 3);
+        my.sprite.spearman_armored = new Enemy(this, 380, 140, "spearman_armored", 5);
+        my.sprite.spearman = new Enemy(this, 380, 180, "spearman", 3);
+        my.sprite.flaming_skull = new Enemy(this, 500, 300, "flaming_skull", 2);
+        my.sprite.flaming_skull2 = new Enemy(this, 520, 320, "flaming_skull", 2);        
+        my.sprite.flaming_skull3 = new Enemy(this, 500, 340, "flaming_skull", 2);        
+        my.sprite.flaming_skull4 = new Enemy(this, 515, 365, "flaming_skull", 2);
+        my.sprite.flaming_skull5 = new Enemy(this, 495, 390, "flaming_skull", 2);
+
+        my.sprite.spearman_armored1 = new Enemy(this, 457, 457, "spearman_armored", 4);
+        my.sprite.archer1 = new Enemy(this, 430, 520, "archer", 3);
+        my.sprite.archer2 = new Enemy(this, 450, 530, "archer", 3);
+        my.sprite.crossbowman1 = new Enemy(this, 490, 530, "crossbowman", 4);
+
+        my.sprite.swordman_great1 = new Enemy(this, 600, 400, "swordman_great", 5);
+        my.sprite.maceman1 = new Enemy(this, 650, 420, "maceman", 5);
+        my.sprite.royal_guard1 = new Enemy(this, 700, 440, "royal_guard", 6);
+        my.sprite.mage1 = new Enemy(this, 750, 460, "mage", 5);
+        my.sprite.mage_hooded1 = new Enemy(this, 800, 480, "mage_hooded", 6);
+
+        my.sprite.royal_guard2 = new Enemy(this, 900, 520, "royal_guard", 7);
+        my.sprite.royal_guard3 = new Enemy(this, 950, 540, "royal_guard", 7);
+        my.sprite.mage2 = new Enemy(this, 1000, 560, "mage", 6);
+        my.sprite.mage_hooded2 = new Enemy(this, 1050, 580, "mage_hooded", 7);
+        my.sprite.king = new Enemy(this, 1100, 600, "king", 10);
+
     }
 
     update() {
