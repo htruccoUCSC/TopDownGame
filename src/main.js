@@ -25,6 +25,7 @@ let config = {
       width: 1080,
       height: 1080,
       scene: [Preloader, MainMenu, Game, GameOver],
+      
 };
 
 var my = { sprite: {}, text: {} };

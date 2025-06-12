@@ -12,6 +12,8 @@ class Game extends Phaser.Scene {
         this.currentGridY = 0;
         this.isTransitioning = false;
         this.currentBounds = { x: 0, y: 0 };
+        this.health = 5;
+
     }
 
     preload(){
@@ -44,6 +46,7 @@ class Game extends Phaser.Scene {
         this.cameras.main.setZoom(this.cameras.main.width / this.zoomLevel);
         this.cameras.main.setBounds(0, 0, this.gridSize, this.gridSize);
         this.cameras.main.startFollow(my.sprite.player);
+
 
         this.cameras.main.on("followupdate", (camera) => {
             const newGridX = Math.floor(my.sprite.player.x / this.gridSize);

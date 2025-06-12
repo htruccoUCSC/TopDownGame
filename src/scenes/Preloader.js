@@ -57,10 +57,39 @@ class Preloader extends Phaser.Scene {
         this.load.image("spearman", "Skeleton_Spearman Not Armored.png");        
         this.load.image("spearman_armored", "Skeleton_Spearman Armored.png");
         this.load.image("archer", "Skeleton_Archer.png");
+        this.load.spritesheet("death", "death_Down.png",{
+            frameWidth: 16,
+            frameHeight: 28
+        });
+        //player hearts
+        this.load.spritesheet("tilemap_packed", "tilemap_packed.png",{
+            frameWidth: 18,
+            frameHeight: 18
+        });
+
     }
 
     create() {
 
+
+        //heart anims
+        this.anims.create({
+            key: "loseHealth",
+            frames: this.anims.generateFrameNumbers("tilemap_packed", {frames: [44, 46]}),
+            frameRate: 3
+        });
+
+        this.anims.create({
+            key: "die",
+            frames: this.anims.generateFrameNumbers("death", {frames: [0,1,2,3,4,5,6,7]}),
+            frameRate: 15
+        });
+
+        this.anims.create({
+            key: "gainHealth",
+            frames: this.anims.generateFrameNumbers("tilemap_packed", {frames: [46, 44]}),
+            frameRate: 3
+        });
         this.anims.create({
             key: "idle",
             frames: this.anims.generateFrameNumbers("walk_down", {frames: [0]}),

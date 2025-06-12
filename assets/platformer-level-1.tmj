@@ -369,7 +369,7 @@
         {
          "draworder":"topdown",
          "id":5,
-         "name":"Object Layer 1",
+         "name":"Objects",
          "objects":[
                 {
                  "height":0,
