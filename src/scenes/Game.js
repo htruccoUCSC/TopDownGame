@@ -13,7 +13,6 @@ class Game extends Phaser.Scene {
         this.currentGridY = 0;
         this.isTransitioning = false;
         this.currentBounds = { x: 0, y: 0 };
-        this.health = 5;
     }
 
     preload(){
@@ -67,6 +66,13 @@ class Game extends Phaser.Scene {
 
         my.sprite.player = new Player(this, this.playerSpawn.x, this.playerSpawn.y, this.shootVFX);
         
+        const numberOfHearts = my.sprite.player.health;
+        this.hearts = [];
+        for (let i = 0; i < numberOfHearts; i++){
+            const heart = this.add.sprite((my.sprite.player.x - ((numberOfHearts -1) * 16)/2 + i * 16),(my.sprite.player.y - 20), "tilemap_packed", 44).setScale(0.5).setOrigin(0.5, 1);
+            this.hearts.push(heart);
+        }
+
         this.physics.add.collider(my.sprite.player, this.walkingLayer);
         this.physics.add.collider(my.sprite.player, this.backgroundLayer);
         this.physics.add.collider(my.sprite.player, this.detailLayer);
@@ -116,7 +122,7 @@ class Game extends Phaser.Scene {
         // NPCs
         this.swordman = new NPC(this, 300, 130, 'swordman', [
             "Skeleton: It's you again?",
-            "Skeleton: Fine. Just click your left mouth button to kill me already.",
+            "Skeleton: Fine. Just click your left mouse button to kill me already.",
             "Skeleton: Remember, you can also use the E key to interact with other NPCs like me.",
             "Skeleton: Hope you can win this time, I am tired of dying to you...",
         ]);
@@ -177,6 +183,10 @@ class Game extends Phaser.Scene {
                     player.health += 1;
                     heart.destroy();
                     this.sound.play("pickupSound");
+                    //this.updateHeartsDisplay();
+                } else {
+                    this.sound.play("pickupSound");
+                    heart.destroy();
                 }
             },
             null,
@@ -186,8 +196,42 @@ class Game extends Phaser.Scene {
 
     update() {
         my.sprite.player.update(this.walkingLayer);
-        console.log();
+
+
+        //moving hearts with player
+        const numberOfHearts = this.hearts ? this.hearts.length : 0;
+        if (this.hearts){
+            for (let i = 0; i < numberOfHearts; i++){
+                this.hearts[i].x = my.sprite.player.x - ((numberOfHearts -1) * 16)/2 + i * 16;
+                this.hearts[i].y = my.sprite.player.y - 20;
+            }
+        }
+
+        //when player takes damage, update hearts accordingly
+        this.updateHeartsDisplay();
+
     }
+    updateHeartsDisplay () {
+        this.hearts.forEach(heart => heart.destroy());
+        this.hearts = [];
+    
+        const numberOfHearts = my.sprite.player.health;
+        const spacing = 16;
+        const offsetY = 20;
+    
+        for (let i = 0; i < numberOfHearts; i++){
+            const heart = this.add.sprite(
+                my.sprite.player.x - ((numberOfHearts -1) * spacing)/2 + i * spacing,
+                my.sprite.player.y - offsetY,
+                "tilemap_packed", 44).setScale(0.5).setOrigin(0.5, 1);
+                this.hearts.push(heart);
+            
+        }
+    }
+
 }
+
+
+
 
 export default Game;
