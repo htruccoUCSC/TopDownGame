@@ -1,6 +1,7 @@
 window.my = window.my || { sprite: {} };
 
 import Player from '../sprites/Player.js';
+import Enemy from '../sprites/Enemy.js';
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -81,25 +82,12 @@ class Game extends Phaser.Scene {
         });
 
         // ENEMIES
-        this.swordman = this.physics.add.sprite(300, 130, "swordman").setScale(0.7);
-        this.swordman.flipX = true;
-        this.swordman.body.immovable = true;
-        this.swordman.health = 5;
 
-        this.physics.add.overlap(my.sprite.player, this.swordman, () => {
-            my.sprite.player.takeDamage();
-        });
-
-        this.physics.add.overlap(my.sprite.player.getBullets(), this.swordman, (swordman, bullet) => {
-            bullet.active = false;
-            bullet.visible = false;
-            bullet.destroy();
-            this.swordman.health -= 1;
-
-            if (swordman.health == 0) {
-                swordman.destroy();
-            }
-        });
+        my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
+        my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5);
+        my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3);
+        my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5);
+        my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3);
     }
 
     update() {

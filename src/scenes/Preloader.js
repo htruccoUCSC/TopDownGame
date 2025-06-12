@@ -52,7 +52,11 @@ class Preloader extends Phaser.Scene {
         this.load.image("heart", "heart.png"); //temp bullet holder
 
         // enemy sprites
-        this.load.image("swordman", "Skeleton_Swordman Not Armored.png");
+        this.load.image("swordman", "Skeleton_Swordman Not Armored.png");        
+        this.load.image("swordman_armored", "Skeleton_Swordman Armored.png");
+        this.load.image("spearman", "Skeleton_Spearman Not Armored.png");        
+        this.load.image("spearman_armored", "Skeleton_Spearman Armored.png");
+        this.load.image("archer", "Skeleton_Archer.png");
     }
 
     create() {
