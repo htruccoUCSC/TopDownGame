@@ -11,7 +11,7 @@ class MainMenu extends Phaser.Scene {
 
     // Add title text
     my.text.title = this.add
-      .text(game.config.width / 2, game.config.height / 3, "Top Down Game", {
+      .text(game.config.width / 2, game.config.height / 3, "Nine Feet Under", {
         fontSize: "64px",
         fill: "#ffffff",
         fontFamily: "Arial",
