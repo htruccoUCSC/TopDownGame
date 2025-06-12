@@ -1,3 +1,5 @@
+import { my } from '../main.js';
+
 class NPC extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, dialogueLines = []) {
         super(scene, x, y, texture);

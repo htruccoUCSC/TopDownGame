@@ -60,6 +60,16 @@ class Preloader extends Phaser.Scene {
 
         //text
         this.load.bitmapFont("rocketSquare", "KennyRocketSquare_0.png", "KennyRocketSquare.fnt");
+
+        this.load.spritesheet("death", "death.png",{
+            frameWidth: 16,
+            frameHeight: 28
+        });
+        //player hearts
+        this.load.spritesheet("tilemap_packed", "tilemap_packed.png",{
+            frameWidth: 18,
+            frameHeight: 18
+        });
     }
 
     create() {
