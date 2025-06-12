@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="27">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="28">
  <editorsettings>
   <export target="platformer-level-1.tmj" format="json"/>
  </editorsettings>
@@ -5294,15 +5294,6 @@
   <object id="1" name="mageEnemySpawn" x="570.9" y="158.6">
    <point/>
   </object>
-  <object id="2" x="506" y="491">
-   <point/>
-  </object>
-  <object id="3" x="1058" y="486">
-   <point/>
-  </object>
-  <object id="4" x="1081" y="161">
-   <point/>
-  </object>
   <object id="7" name="chest" gid="60" x="153" y="470" width="16" height="16"/>
   <object id="8" name="chest" gid="60" x="982" y="486" width="16" height="16"/>
   <object id="9" name="chest" gid="60" x="1448" y="183" width="16" height="16"/>
@@ -5340,6 +5331,9 @@
    <point/>
   </object>
   <object id="26" name="spearmanArmoredEnemySpawn" x="419.333" y="192.667">
+   <point/>
+  </object>
+  <object id="27" name="spearmanEnemySpawn" x="172.667" y="411.333">
    <point/>
   </object>
  </objectgroup>
