@@ -36,7 +36,7 @@ class Game extends Phaser.Scene {
         this.animatedTiles.init(this.map);
 
         this.playerSpawn = this.map.findObject(
-            "Object Layer 1",
+            "Objects",
             (obj) => obj.name === "playerSpawnPoint"
           );
 
