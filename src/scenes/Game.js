@@ -1,6 +1,7 @@
 import { my } from '../main.js';
 import Player from '../sprites/Player.js';
 import Enemy from '../sprites/Enemy.js';
+import NPC from '../sprites/NPC.js';
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -101,9 +102,18 @@ class Game extends Phaser.Scene {
             }
         });
 
+        // NPCs
+        this.swordman = new NPC(this, 300, 130, 'swordman', [
+            "Skeleton: It's you again?",
+            "Skeleton: Fine. Just click your left mouth button to kill me already.",
+            "Skeleton: Remember, you can also use the E key to interact with other NPCs like me.",
+            "Skeleton: Hope you can win this time, I am tired of dying to you...",
+        ]);
+        this.npcs = this.add.group([this.swordman]);
+
         // ENEMIES
 
-        my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
+        //my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
         my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5);
         my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3);
         my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5);

@@ -23,13 +23,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             a: scene.input.keyboard.addKey('A'),
             w: scene.input.keyboard.addKey('W'),
             s: scene.input.keyboard.addKey('S'),
-            d: scene.input.keyboard.addKey('D')
+            d: scene.input.keyboard.addKey('D'),
+            e: scene.input.keyboard.addKey('E'),
         };
 
         scene.input.on('pointerdown', (pointer) => {
-            if (pointer.leftButtonDown()) {
-                this.shoot(pointer);
-            }
+            this.shoot(pointer);
         });
     }
 
@@ -45,9 +44,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             worldPoint.y,
             {
                 texture: 'heart',
-                scale: 0.5,
-                range: 200,
-                duration: 300
+                scale: 0.3,
+                range: 50,
+                duration: 200
             }
         );
 
@@ -60,6 +59,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(walkingLayer) {
+        if (this.scene.npcs && this.scene.npcs.getChildren().some(npc => npc.isDialogueActive)) {
+            this.setVelocity(0, 0);
+            return;
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.keys.e)) {
+            const npc = this.getNearbyNPC();
+            if (npc) {
+                npc.startDialogue();
+                return;
+            }
+        }
+
         let vx = 0;
         let vy = 0;
 
@@ -89,6 +101,22 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setVelocity(vx * this.speed, vy * this.speed);
         
         this.updateAnimation(vx, vy);
+    }
+
+    // INTERACT WITH NPCs
+
+    getNearbyNPC() {
+        if (!this.scene.npcs) return null;
+        let nearest = null;
+        let minDist = 30; 
+        for (const npc of this.scene.npcs.getChildren()) {
+            const dist = Phaser.Math.Distance.Between(this.x, this.y, npc.x, npc.y);
+            if (dist < minDist) {
+                nearest = npc;
+                minDist = dist;
+            }
+        }
+        return nearest;
     }
 
     updateAnimation(vx, vy) {
