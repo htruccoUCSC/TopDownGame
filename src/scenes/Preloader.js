@@ -59,7 +59,7 @@ class Preloader extends Phaser.Scene {
         this.load.image("spearman", "Skeleton_Spearman Not Armored.png");        
         this.load.image("spearman_armored", "Skeleton_Spearman Armored.png");
         this.load.image("archer", "Skeleton_Archer.png");
-        this.load.spritesheet("death", "death_Down.png",{
+        this.load.spritesheet("death", "death.png",{
             frameWidth: 16,
             frameHeight: 28
         });
@@ -136,7 +136,7 @@ class Preloader extends Phaser.Scene {
             repeat: -1
         });
 
-        this.scene.start("game");
+        this.scene.start("titleScreen");
     }  
 }
 export default Preloader;

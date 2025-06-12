@@ -5,6 +5,7 @@ import MainMenu from './scenes/MainMenu.js';
 import Game from './scenes/Game.js';
 import GameOver from './scenes/GameOver.js';
 
+export const my = { sprite: {}, text: {} };
 
 let config = {
     parent: "phaser-game",
@@ -28,6 +29,4 @@ let config = {
       
 };
 
-var my = { sprite: {}, text: {} };
-
-const game = new Phaser.Game(config);
+export const game = new Phaser.Game(config);

@@ -1,5 +1,4 @@
-window.my = window.my || { sprite: {} };
-
+import { my } from '../main.js';
 import Player from '../sprites/Player.js';
 import Enemy from '../sprites/Enemy.js';
 
@@ -49,7 +48,12 @@ class Game extends Phaser.Scene {
 
 
 
-        my.sprite.player = new Player(this, 103, 50, this.shootVFX);
+        this.playerSpawn = this.map.findObject(
+            "Objects",
+            (obj) => obj.name === "playerSpawnPoint"
+          );
+
+        my.sprite.player = new Player(this, this.playerSpawn.x, this.playerSpawn.y, this.shootVFX);
         
         this.physics.add.collider(my.sprite.player, this.walkingLayer);
         this.physics.add.collider(my.sprite.player, this.backgroundLayer);
