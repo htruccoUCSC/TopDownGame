@@ -2,6 +2,7 @@ import { my } from '../main.js';
 import Player from '../sprites/Player.js';
 import Enemy from '../sprites/Enemy.js';
 import NPC from '../sprites/NPC.js';
+import Collectible from '../sprites/Collectible.js';
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -156,6 +157,31 @@ class Game extends Phaser.Scene {
                 this.enemyGroup.add(enemy);
             }
         });
+
+        const collectibleObjects = this.map.filterObjects(
+            "Objects",
+            (obj) => obj.name === "heart"
+          );
+          
+          this.collectibleGroup = this.physics.add.group();
+          collectibleObjects.forEach(obj => {
+              const collectible = new Collectible(this, obj.x, obj.y - 8);
+              this.collectibleGroup.add(collectible);
+          });
+
+          this.physics.add.overlap(
+            my.sprite.player,
+            this.collectibleGroup,
+            (player, heart) => {
+                if (player.health < 3) {
+                    player.health += 1;
+                    heart.destroy();
+                    this.sound.play("pickupSound");
+                }
+            },
+            null,
+            this
+        );
     }
 
     update() {
