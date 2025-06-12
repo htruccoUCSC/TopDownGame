@@ -74,6 +74,13 @@ class Preloader extends Phaser.Scene {
             frameWidth: 18,
             frameHeight: 18
         });
+
+        //audio
+        this.load.audio("shootSound", "powerUp9.ogg");
+        this.load.audio("hitSound", "impactPlank_medium_000.ogg");
+        this.load.audio("deathSound", "impactBell_heavy_001.ogg");
+        this.load.audio("playerDeath", "phaserDown3.ogg");
+        this.load.audio("footstep", "footstep_carpet_000.ogg");
     }
 
     create() {
