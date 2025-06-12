@@ -14,6 +14,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.health = 3;
         this.isInvincible = false;
         this.lastDirection = { x: 1, y: 0 };
+
+        this.footstepTimer = 0;
+        this.footstepInterval = 300; // ms between footsteps
         
         this.speed = 100;
 
@@ -36,6 +39,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     shoot(pointer) {
         const worldPoint = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y);
         
+        //add audio
+        this.scene.sound.play("shootSound");
+
         const bullet = new Bullet(
             this.scene,
             this.x,
@@ -96,6 +102,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         if (vx !== 0 || vy !== 0) {
             this.lastDirection.x = vx;
             this.lastDirection.y = vy;
+
+            // Footstep sound
+        if (this.scene.time.now > this.footstepTimer) {
+            this.scene.sound.play("footstep", { volume: 0.5 });
+            this.footstepTimer = this.scene.time.now + this.footstepInterval;
+    }
         }
 
         this.setVelocity(vx * this.speed, vy * this.speed);
@@ -147,6 +159,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             });
 
             if (this.health <= 0) {
+                this.scene.sound.play("playerDeath");
                 this.scene.scene.restart();
             }
         }

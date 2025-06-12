@@ -24,10 +24,15 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
             bullet.active = false;
             bullet.visible = false;
             bullet.destroy();
+
+            //play hitting sound
+            scene.sound.play("hitSound");
+
             this.health -= 1;
 
             this.bloodVFX.emitParticleAt(this.x,this.y);
             if (this.health <= 0) {
+                scene.sound.play("deathSound"); //plays sound of death!
                 this.destroy();
             }
             
