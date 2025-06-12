@@ -83,6 +83,7 @@ class Preloader extends Phaser.Scene {
         this.load.audio("deathSound", "impactBell_heavy_001.ogg");
         this.load.audio("playerDeath", "phaserDown3.ogg");
         this.load.audio("footstep", "footstep_carpet_000.ogg");
+        this.load.audio("pickupSound", "impactMining_000.ogg");
     }
 
     create() {
