@@ -1,8 +1,6 @@
-import { my } from '../main.js';
-
 class NPC extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture, dialogueLines = []) {
-        super(scene, x, y, texture);
+    constructor(scene, x, y, texture, dialogueLines = [], health) {
+        super(scene, x, y, texture,);
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -21,10 +19,10 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
         this.dialogueBox = null;
         this.dialogueText = null;
 
-        this.eKey = scene.input.keyboard.addKey('E');
+        this.eKey = null;
         this.advanceListener = null;
         this.continueText = null;
-        this.health = 3;
+        this.health = health || 3;
 
         // gets rid of NPCs after already interacted with
         scene.physics.add.overlap(my.sprite.player.getBullets(), this, (NPC, bullet) => {
@@ -43,16 +41,15 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
 
     startDialogue() {
         if (this.isDialogueActive || this.hasSpoken) return;
-
         this.isDialogueActive = true;
         this.dialogueIndex = 0;
 
         this.dialogueBox = this.scene.add.rectangle(
-            280, 250, 400, 60, 0x000000, 0.7
+            this.x - 20, this.y + 120, 400, 60, 0x000000, 0.7
         ).setOrigin(0.5);
 
         this.dialogueText = this.scene.add.text(
-            280, 250,
+            this.x - 20, this.y + 120, 
             this.dialogueLines[this.dialogueIndex] || "",
             {
                 fontFamily: 'monospace',
@@ -64,7 +61,7 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
         ).setOrigin(0.5);
 
         this.continueText = this.scene.add.text(
-            280, 290,
+            this.x - 20, this.y + 160,
             "Press E to continue",
             {
                 fontFamily: 'monospace',
@@ -74,14 +71,15 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
             }
         ).setOrigin(0.5);
 
-        this.advanceListener = this.scene.input.keyboard.on('keydown-E', () => {
+        this.advanceHandler = () => {
             this.dialogueIndex++;
             if (this.dialogueIndex < this.dialogueLines.length) {
                 this.dialogueText.setText(this.dialogueLines[this.dialogueIndex]);
             } else {
                 this.endDialogue();
             }
-        });
+        };
+        this.scene.input.keyboard.on('keydown-E', this.advanceHandler);
     }
 
     endDialogue() {
@@ -90,7 +88,10 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
         if (this.dialogueBox) this.dialogueBox.destroy();
         if (this.dialogueText) this.dialogueText.destroy();
         if (this.continueText) this.continueText.destroy();
-        if (this.advanceListener) this.scene.input.keyboard.off('keydown-E', this.advanceListener);
+        if (this.advanceHandler && this.scene && this.scene.input && this.scene.input.keyboard) {
+            this.scene.input.keyboard.off('keydown-E', this.advanceHandler);
+            this.advanceHandler = null;
+        }
     }
 }
 
