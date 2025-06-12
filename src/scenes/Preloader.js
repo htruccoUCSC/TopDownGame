@@ -133,7 +133,7 @@ class Preloader extends Phaser.Scene {
             repeat: -1
         });
 
-        this.scene.start("game");
+        this.scene.start("titleScreen");
     }  
 }
 export default Preloader;

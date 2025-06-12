@@ -1,3 +1,5 @@
+import { my } from '../main.js';
+
 class Enemy extends Phaser.Physics.Arcade.Sprite {
     constructor (scene, x, y, enemytype, health) {
         super(scene, x, y, enemytype);
