@@ -628,6 +628,42 @@
                  "width":18,
                  "x":1600,
                  "y":538
+                }, 
+                {
+                 "height":0,
+                 "id":24,
+                 "name":"spearmanEnemySpawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":415.333333333333,
+                 "y":117.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":25,
+                 "name":"swordmanArmoredEnemySpawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":416.666666666667,
+                 "y":155.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":26,
+                 "name":"spearmanArmoredEnemySpawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":419.333333333333,
+                 "y":192.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -636,7 +672,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":24,
+ "nextobjectid":27,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

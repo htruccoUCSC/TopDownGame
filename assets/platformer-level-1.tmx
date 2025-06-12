@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="24">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="27">
  <editorsettings>
   <export target="platformer-level-1.tmj" format="json"/>
  </editorsettings>
@@ -5332,6 +5332,15 @@
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
+  </object>
+  <object id="24" name="spearmanEnemySpawn" x="415.333" y="117.333">
+   <point/>
+  </object>
+  <object id="25" name="swordmanArmoredEnemySpawn" x="416.667" y="155.333">
+   <point/>
+  </object>
+  <object id="26" name="spearmanArmoredEnemySpawn" x="419.333" y="192.667">
+   <point/>
   </object>
  </objectgroup>
 </map>

@@ -50,7 +50,7 @@ class Game extends Phaser.Scene {
         this.bloodVFX = this.add.particles(0,0, "kenny-particles", {
             frame: ['smoke_08.png'],
             emitting: false,
-            scale: {start: 1.0, end: 0.0},
+            scale: {start: 0.03, end: 0.0},
             lifespan: 500,
             speed: {min: 50, max: 100},
             gravityY: 1000,
@@ -122,14 +122,40 @@ class Game extends Phaser.Scene {
         this.npcs = this.add.group([this.swordman]);
 
         // ENEMIES
-
-        //my.sprite.swordman = new Enemy(this, 300, 130, "swordman", 3);
-        my.sprite.swordman_armored = new Enemy(this, 500, 140, "swordman_armored", 5, this.bloodVFX);
-        my.sprite.spearman = new Enemy(this, 400, 100, "spearman", 3, this.bloodVFX);
-        my.sprite.spearman_armored = new Enemy(this, 400, 140, "spearman_armored", 5, this.bloodVFX);
-        my.sprite.spearman = new Enemy(this, 400, 180, "spearman", 3, this.bloodVFX);
-
         
+        this.enemyGroup = this.physics.add.group();
+
+        const enemySpawns = this.map.filterObjects(
+          "Objects",
+          (obj) => obj.name.includes("EnemySpawn")
+        );
+
+        enemySpawns.forEach(spawnPoint => {
+            let enemy;
+            switch(spawnPoint.name) {
+                case "spearmanEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "spearman", 3, this.bloodVFX);
+                    break;
+                case "spearmanArmoredEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "spearman_armored", 5, this.bloodVFX);
+                    break;
+                case "swordmanEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "swordman", 3, this.bloodVFX);
+                    break;
+                case "swordmanArmoredEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "swordman_armored", 5, this.bloodVFX);
+                    break;
+                case "mageEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "mage", 3, this.bloodVFX);
+                    break;
+                case "mageHoodedEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "mage_hooded", 5, this.bloodVFX);
+                    break;
+            }
+            if (enemy) {
+                this.enemyGroup.add(enemy);
+            }
+        });
     }
 
     update() {
