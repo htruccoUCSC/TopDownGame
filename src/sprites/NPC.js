@@ -44,6 +44,7 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
     startDialogue() {
         if (this.isDialogueActive || this.hasSpoken) return;
         this.isDialogueActive = true;
+        this.scene.isDialogueActive = true //new
         this.dialogueIndex = 0;
 
         this.dialogueBox = this.scene.add.rectangle(
@@ -87,6 +88,7 @@ class NPC extends Phaser.Physics.Arcade.Sprite {
     endDialogue() {
         this.isDialogueActive = false;
         this.hasSpoken = true;
+        this.scene.isDialogueActive = false; //new
         if (this.dialogueBox) this.dialogueBox.destroy();
         if (this.dialogueText) this.dialogueText.destroy();
         if (this.continueText) this.continueText.destroy();

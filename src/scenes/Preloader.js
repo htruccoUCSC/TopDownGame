@@ -71,6 +71,7 @@ class Preloader extends Phaser.Scene {
         this.load.image("archer", "Skeleton_Archer.png");
         this.load.image("mage", "Skeleton_Mage Not Hooded.png");
         this.load.image("mage_hooded", "Skeleton_Mage Hooded.png");
+        this.load.image("agis2", "Agis2.png");
 
         //text
         this.load.bitmapFont("rocketSquare", "KennyRocketSquare_0.png", "KennyRocketSquare.fnt");
@@ -94,6 +95,7 @@ class Preloader extends Phaser.Scene {
         this.load.audio("playerDeath", "phaserDown3.ogg");
         this.load.audio("footstep", "footstep_carpet_000.ogg");
         this.load.audio("pickupSound", "impactMining_000.ogg");
+        this.load.audio("celebration", "celebration_sound.wav");
     }
 
     create() {
@@ -120,7 +122,7 @@ class Preloader extends Phaser.Scene {
         //Agis animation
         this.anims.create({
             key: "boss",
-            frames: this.anims.generateFrameNumbers("agis", {frames: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}),
+            frames: this.anims.generateFrameNumbers("agis_anim", {frames: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]}),
             frameRate: 10,
             repeat: -1
         });

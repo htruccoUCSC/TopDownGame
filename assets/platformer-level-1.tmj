@@ -760,6 +760,18 @@
                  "width":0,
                  "x":1508,
                  "y":250
+                }, 
+                {
+                 "height":0,
+                 "id":39,
+                 "name":"bossEnemySpawn",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1888,
+                 "y":498
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -768,7 +780,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":38,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

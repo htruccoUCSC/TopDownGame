@@ -13,6 +13,7 @@ class Game extends Phaser.Scene {
         this.currentGridY = 0;
         this.isTransitioning = false;
         this.currentBounds = { x: 0, y: 0 };
+        this.isDialogueActive = false;
     }
 
     preload(){
@@ -158,10 +159,13 @@ class Game extends Phaser.Scene {
                 case "mageHoodedEnemySpawn":
                     enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "mage_hooded", 5, this.bloodVFX);
                     break;
+                case "bossEnemySpawn":
+                    enemy = new Enemy(this, spawnPoint.x, spawnPoint.y, "agis2", 25, this.bloodVFX).setScale(0.65);
             }
             if (enemy) {
                 this.enemyGroup.add(enemy);
             }
+            
         });
 
         const collectibleObjects = this.map.filterObjects(
@@ -197,6 +201,10 @@ class Game extends Phaser.Scene {
     update() {
         my.sprite.player.update(this.walkingLayer);
 
+        this.enemyGroup.getChildren().forEach(enemy => {
+            enemy.update(my.sprite.player);
+        });
+
 
         //moving hearts with player
         const numberOfHearts = this.hearts ? this.hearts.length : 0;
@@ -209,6 +217,8 @@ class Game extends Phaser.Scene {
 
         //when player takes damage, update hearts accordingly
         this.updateHeartsDisplay();
+
+        
 
     }
     updateHeartsDisplay () {
